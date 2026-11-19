@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@plugin 'flowbite/plugin';
+@source "../node_modules/flowbite";
+@import 'tailwindcss';
+
+@theme {
+  --color-mainColor: #00298d;
+  --color-secondColor: #f0f2f5;
+  --font-sn: 'SN Pro', sans-serif;
+}
+@utility container {
+  margin-inline: auto;
+}
+body {
+  background-color: var(--color-secondColor);
+}
+@font-face {
+  font-family: 'SN Pro';
+  src: url('./assets/fonts/SNPro-VariableFont_wght.ttf') format('truetype');
+}

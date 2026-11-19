@@ -1,0 +1,154 @@
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white">
+  <div class="mx-auto grid h-14 max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-4 sm:px-6">
+    <!-- Left: Logo -->
+    <a routerLink="/main/feed" class="flex items-center gap-3 justify-self-start">
+      <span
+        class="flex h-10 w-10 items-center justify-center rounded-xl bg-mainColor text-[9px] font-extrabold tracking-tight text-white"
+        >ROUTE</span
+      >
+      <span class="hidden text-xl font-extrabold text-ink sm:block">Route Posts</span>
+    </a>
+
+    <!-- Center: Navigation pill -->
+    <nav
+      class="flex items-center gap-1 rounded-2xl border border-slate-200 bg-slate-50/70 p-1 text-slate-700 shadow-sm"
+    >
+      <!-- Feed -->
+      <a
+        routerLink="/main/timeline"
+        routerLinkActive="bg-white text-[#1877f2] shadow-sm"
+        class="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition hover:bg-white/70"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="hidden md:inline">Feed</span>
+      </a>
+
+      <!-- Profile -->
+      <a
+        routerLink="/main/profile"
+        routerLinkActive="bg-white text-[#1877f2] shadow-sm"
+        class="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition hover:bg-white/70"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round" />
+        </svg>
+        <span class="hidden md:inline">Profile</span>
+      </a>
+
+      <!-- Notifications -->
+      <a
+        routerLink="/main/notification"
+        routerLinkActive="bg-white text-[#1877f2] shadow-sm"
+        class="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition hover:bg-white/70"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M21 11.5a8.5 8.5 0 0 1-12.4 7.5L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5Z"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="hidden md:inline">Notifications</span>
+      </a>
+    </nav>
+
+    <!-- Right: User dropdown (Flowbite) -->
+    <div class="justify-self-end">
+      <button
+        id="user-menu-button"
+        type="button"
+        data-dropdown-toggle="user-dropdown"
+        data-dropdown-placement="bottom-end"
+        class="flex items-center gap-2 rounded-full border border-slate-200 bg-white py-1.5 pl-2 pr-3 shadow-sm transition hover:bg-slate-50"
+      >
+        <div class="relative">
+          <img
+            [src]="photoPreview || currentUser.photo"
+            [alt]="currentUser.name"
+            class="h-11 w-11 rounded-full object-cover"
+          />
+
+          <label
+            for="navbarPhoto"
+            class="absolute -bottom-1 -right-1 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-blue-600 text-white"
+          >
+            <i class="fa-solid fa-camera text-[9px]"></i>
+          </label>
+
+          <input
+            id="navbarPhoto"
+            type="file"
+            accept="image/*"
+            class="hidden"
+            (change)="onPhotoSelected($event)"
+          />
+        </div>
+        <p class="text-sm font-extrabold text-ink">
+          {{ currentUser.name }}
+        </p>
+        <svg
+          class="h-4 w-4 text-slate-500"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          viewBox="0 0 24 24"
+        >
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- Dropdown menu -->
+      <div
+        id="user-dropdown"
+        class="z-50 hidden w-56 divide-y divide-slate-100 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg"
+      >
+        <div class="px-4 py-3"></div>
+        <ul class="py-1 text-sm font-medium text-slate-700">
+          <li>
+            <a routerLink="/main/profile" class="block px-4 py-2.5 hover:bg-slate-50">My profile</a>
+          </li>
+          <li>
+            <a routerLink="/main/feed" class="block px-4 py-2.5 hover:bg-slate-50">Feed</a>
+          </li>
+          <li>
+            <a routerLink="/main/change-password" class="block px-4 py-2.5 hover:bg-slate-50">
+              Change Password
+            </a>
+          </li>
+        </ul>
+        <div class="py-1">
+          <button
+            (click)="logOut()"
+            type="button"
+            class="block w-full px-4 py-2.5 text-left text-sm font-medium text-red-600 hover:bg-red-50"
+          >
+            Log out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

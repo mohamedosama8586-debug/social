@@ -1,0 +1,344 @@
+<section class="min-h-screen bg-[#f3f5f8] font-sans text-ink antialiased">
+  <main
+    class="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-10 px-6 py-10 lg:grid-cols-[1fr_480px] lg:gap-24"
+  >
+    <!-- Left: Brand + About -->
+    <section class="max-w-xl lg:justify-self-start lg:pl-8">
+      <h1 class="text-6xl text-mainColor font-extrabold tracking-tight text-brand">Route Posts</h1>
+      <p class="mt-5 text-2xl leading-9 text-slate-800">
+        Connect with friends and the world around you on Route Posts.
+      </p>
+
+      <div
+        class="mt-8 rounded-2xl border border-indigo-100 bg-white/80 p-6 shadow-[0_2px_10px_rgba(0,43,143,0.12)]"
+      >
+        <p class="text-sm font-bold uppercase tracking-[0.2em] text-mainColor text-brand">
+          About Route Academy
+        </p>
+        <h2 class="mt-3 text-xl font-bold text-ink">
+          Egypt's Leading IT Training Center Since 2012
+        </h2>
+        <p class="mt-3 text-[15px] leading-7 text-slate-600">
+          Route Academy is the premier IT training center in Egypt, established in 2012. We
+          specialize in delivering high-quality training courses in programming, web development,
+          and application development. We've identified the unique challenges people may face when
+          learning new technology and made efforts to provide strategies to overcome them.
+        </p>
+
+        <div class="mt-5 grid grid-cols-3 gap-3">
+          <div class="rounded-xl border border-indigo-100 bg-indigo-50/60 px-4 py-3">
+            <p class="text-lg font-bold text-mainColor text-brand">2012</p>
+            <p class="text-xs font-semibold uppercase text-slate-600">Founded</p>
+          </div>
+          <div class="rounded-xl border border-indigo-100 bg-indigo-50/60 px-4 py-3">
+            <p class="text-lg font-bold text-mainColor text-brand">40K+</p>
+            <p class="text-xs font-semibold uppercase text-slate-600">Graduates</p>
+          </div>
+          <div class="rounded-xl border border-indigo-100 bg-indigo-50/60 px-4 py-3">
+            <p class="text-lg font-bold text-mainColor text-brand">50+</p>
+            <p class="text-xs font-semibold uppercase text-slate-600">Partner Companies</p>
+          </div>
+          <div class="rounded-xl border border-indigo-100 bg-indigo-50/60 px-4 py-3">
+            <p class="text-lg text-mainColor font-bold text-brand">5</p>
+            <p class="text-xs font-semibold uppercase text-slate-600">Branches</p>
+          </div>
+          <div class="rounded-xl border border-indigo-100 bg-indigo-50/60 px-4 py-3">
+            <p class="text-lg font-bold text-mainColor text-brand">20</p>
+            <p class="text-xs font-semibold uppercase text-slate-600">Diplomas Available</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Auth card -->
+    <section class="w-full rounded-3xl bg-white p-6 shadow-sm">
+      <!-- Tabs -->
+      <div class="grid grid-cols-2 gap-1 rounded-xl bg-slate-100 p-1">
+        <button
+          id="tab-login"
+          type="button"
+          class="rounded-lg py-2.5 text-sm font-bold text-slate-700 transition"
+        >
+          Login
+        </button>
+        <button
+          id="tab-register"
+          type="button"
+          class="rounded-lg bg-white text-mainColor py-2.5 text-sm font-bold text-brand shadow transition"
+        >
+          Register
+        </button>
+      </div>
+
+      <!-- Register form -->
+      <form
+        (ngSubmit)="sentRigesterData()"
+        [formGroup]="registerForm"
+        id="register-form"
+        class="mt-7"
+        novalidate
+      >
+        <h2 class="text-2xl font-extrabold text-ink">Create a new account</h2>
+        <p class="mt-1 text-sm text-slate-500">It is quick and easy.</p>
+
+        <div class="mt-5 space-y-3.5">
+          <!-- Full name -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" stroke-linecap="round" />
+            </svg>
+            <input
+              formControlName="name"
+              type="text"
+              placeholder="Full name"
+              class="w-full bg-transparent text-sm outline-none placeholder:text-slate-400 border-0"
+            />
+          </label>
+          @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                @if (registerForm.get('name')?.hasError('required')) {
+                  <li>Full Name is required.</li>
+                }
+                @if (registerForm.get('name')?.hasError('minlength')) {
+                  <li>Name must be at least 3 characters</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Username -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1" stroke-linecap="round" />
+            </svg>
+            <input
+              formControlName="username"
+              type="text"
+              placeholder="Username (optional)"
+              class="w-full bg-transparent text-sm outline-none placeholder:text-slate-400 border-0"
+            />
+          </label>
+
+          <!-- Email -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1" stroke-linecap="round" />
+            </svg>
+            <input
+              formControlName="email"
+              type="email"
+              placeholder="Email address"
+              class="w-full bg-transparent text-sm outline-none placeholder:text-slate-400 border-0"
+            />
+          </label>
+          @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                @if (registerForm.get('email')?.hasError('required')) {
+                  <li>Full Email is required.</li>
+                }
+                @if (registerForm.get('email')?.hasError('email')) {
+                  <li>Enter a valid email address.</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Gender -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-4 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="9" cy="8" r="3.5" />
+              <path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6" stroke-linecap="round" />
+              <path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.4.6 4 2.5 4 5" stroke-linecap="round" />
+            </svg>
+            <select
+              class="w-full bg-transparent px-1 text-sm outline-none border-0"
+              formControlName="gender"
+            >
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
+          @if (registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                @if (registerForm.get('gender')?.hasError('required')) {
+                  <li>Full Gender is required.</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Date -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M3 10h18M8 3v4M16 3v4" stroke-linecap="round" />
+            </svg>
+            <input
+              type="date"
+              class="w-full bg-transparent text-sm outline-none border-0"
+              formControlName="dateOfBirth"
+            />
+          </label>
+          @if (
+            registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched
+          ) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                @if (registerForm.get('dateOfBirth')?.hasError('required')) {
+                  <li>Full DateOfBirth is required.</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Password -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="8" cy="15" r="4" />
+              <path d="m11 12 9-9m-3 3 3 3m-6-0 2 2" stroke-linecap="round" />
+            </svg>
+            <input
+              formControlName="password"
+              type="password"
+              placeholder="Password"
+              class="w-full bg-transparent text-sm outline-none placeholder:text-slate-400 border-0"
+            />
+          </label>
+          @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                @if (registerForm.get('password')?.hasError('required')) {
+                  <li>Full Password is required.</li>
+                }
+                @if (registerForm.get('password')?.hasError('pattern')) {
+                  <ul class="list-disc pl-4 space-y-1">
+                    <li>Password must be at least 8 characters long.</li>
+                    <li>Must contain at least one uppercase letter.</li>
+                    <li>Must contain at least one lowercase letter.</li>
+                    <li>Must contain at least one number.</li>
+                    <li>Must contain at least one special character.</li>
+                  </ul>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Confirm password -->
+          <label
+            class="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20"
+          >
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="8" cy="15" r="4" />
+              <path d="m11 12 9-9m-3 3 3 3m-6-0 2 2" stroke-linecap="round" />
+            </svg>
+            <input
+              formControlName="rePassword"
+              type="password"
+              placeholder="Confirm password"
+              class="w-full bg-transparent text-sm outline-none placeholder:text-slate-400 border-0"
+            />
+          </label>
+          @if (registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                @if (registerForm.get('rePassword')?.hasError('required')) {
+                  <li>Confirm Password is required.</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (registerForm.hasError('mismatch') && registerForm.get('rePassword')?.touched) {
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-red-800">
+              <ul class="list-disc pl-4 space-y-1">
+                <li>Passwords do not match.</li>
+              </ul>
+            </div>
+          }
+        </div>
+
+        <button
+          [disabled]="registerForm.invalid || isloading()"
+          type="submit"
+          class="mt-4 w-full disabled:bg-gray-400 disabled:cursor-not-allowed rounded-xl bg-brand py-3.5 text-[15px] font-bold text-white bg-mainColor focus:outline-none focus:ring-4 focus:ring-brand/30"
+        >
+          Create New Account
+          @if (isloading()) {
+            <span> <i class="fas fa-spinner fa-spin"></i></span>
+          }
+        </button>
+        @if (msgText()) {
+          <div class="bg-red-50 border border-red-200 rounded-xl p-3 m-4 text-red-800">
+            <ul class="list-disc pl-4 space-y-1">
+              <li>{{ msgText() }}</li>
+            </ul>
+          </div>
+        }
+        <a routerLink="/auth/login" class="font-semibold text-cyan-950 transition-all duration-300">
+          already have an account
+        </a>
+      </form>
+    </section>
+  </main>
+</section>
