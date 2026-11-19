@@ -18,6 +18,12 @@ import { guestGuard } from './core/auth/guard/guest-guard';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'auth/register',
+    pathMatch: 'full',
+  },
+
+  {
     path: 'auth',
     component: AuthLayoutComponent,
     canActivate: [guestGuard],
@@ -41,5 +47,10 @@ export const routes: Routes = [
   },
 
   { path: 'notfound', component: NotfoundComponent },
-  { path: '**', redirectTo: 'notfound', pathMatch: 'full' },
+
+  {
+    path: '**',
+    redirectTo: 'auth/register',
+    pathMatch: 'full',
+  },
 ];
